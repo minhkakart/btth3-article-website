@@ -1,6 +1,6 @@
 <?php
 
-$controller = isset($_GET['controller']) ? $_GET['controller'] : 'article';
+$controller = isset($_GET['controller']) ? $_GET['controller'] : 'home';
 $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 

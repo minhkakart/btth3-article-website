@@ -17,4 +17,13 @@ class CategoryService{
         $categories = $stmt->fetchAll();
         return $categories;
     }
+    public function getById($category_id)
+    {
+        $query = 'SELECT * FROM category WHERE id = ?';
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(1, $category_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $category = $stmt->fetch();
+        return $category;
+    }
 }

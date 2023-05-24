@@ -16,7 +16,7 @@ require '../includes/header.php';
     }
     ?>
     <h2>Thêm bài viết</h2>
-    <form action="routes.php?controler=article&action=create" method="POST">
+    <form action="routes.php?controller=article&action=create" method="POST">
         <div class="row mb-3">
             <label for="title" class="col-sm-2 col-form-label">Title</label>
             <div class="col-sm-10">
@@ -39,7 +39,7 @@ require '../includes/header.php';
             <label for="category" class="col-sm-2 col-form-label">Category</label>
             <div class="col-sm-10">
                 <select name="category" id="category">
-                    <option value="<-- Select Category -->" selected><-- Select Category --></option>
+                    <option value="1" selected><-- Select Category --></option>
                     <?php
                     foreach ($categories as $category) {
                         ?>
@@ -54,7 +54,7 @@ require '../includes/header.php';
             <label for="member" class="col-sm-2 col-form-label">Member</label>
             <div class="col-sm-10">
                 <select name="member" id="member">
-                    <option value="<-- Select Member -->" selected><-- Select Member --></option>
+                    <option value="1" selected><-- Select Member --></option>
                     <?php
                     foreach ($members as $member) {
                         ?>
@@ -69,7 +69,7 @@ require '../includes/header.php';
             <label for="image" class="col-sm-2 col-form-label">Image</label>
             <div class="col-sm-10">
                 <select name="image" id="image">
-                    <option value="" selected><-- Select Image --></option>
+                    <option value="1" selected><-- Select Image --></option>
                     <?php
                     foreach ($images as $image) {
                         ?>

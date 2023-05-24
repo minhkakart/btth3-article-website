@@ -3,7 +3,7 @@ include('../includes/header.php');
 ?>
 <div class="main">
     <h2 class="text-center">Danh sách bài viết</h2>
-<a href="routes.php?action=create" class="btn btn-primary">Thêm bài viết</a>
+<a href="routes.php?controller=article&action=create" class="btn btn-primary">Thêm bài viết</a>
 <div class="table-responsive">
     <table class="table table-primary">
         <thead>

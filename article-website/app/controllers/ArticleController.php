@@ -10,10 +10,12 @@ class ArticleController
     {
         $service = new ArticleService();
         $articles = $service->getAll();
+        $service = new CategoryService();
+        $categories = $service->getAll();
 
         include('views/article/index.php');
     }
-    public function create(Article $article = null)
+    public function create($str = '', Article $article = null)
     {
         if ($article != null) {
             $service = new ArticleService();
@@ -57,6 +59,9 @@ class ArticleController
     {
         $service = new ArticleService();
         $article = $service->getById($id);
+        $service = new CategoryService();
+        $categories = $service->getAll();
+        $category_name = $service->getById($article['category_id'])['name'];
 
         include('views/article/show.php');
     }
