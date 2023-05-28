@@ -24,19 +24,21 @@
             <div class="nav">
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link" href="routes.php?controller=article">
-                            Articles
+                        <a class="nav-link" href="routes.php?controller=admin">
+                            Admin
                         </a>
                     </li>
                     <?php
-                    foreach ($categories as $category) {
-                        ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <?= $category['name'] ?>
-                            </a>
-                        </li>
-                        <?php
+                    foreach ($categories as $item) {
+                        if ($item['navigation'] == 1) {
+                            ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="routes.php?id=<?=$item['id']?>">
+                                    <?= $item['name'] ?>
+                                </a>
+                            </li>
+                            <?php
+                        }
                     }
                     ?>
                     <li class="nav-item"><a href="#"><i class="bi bi-search"></a></i></li>

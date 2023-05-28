@@ -17,4 +17,13 @@ class MemberService{
         $members = $stmt->fetchAll();
         return $members;
     }
+    public function getById($member_id)
+    {
+        $query = 'SELECT * FROM member WHERE id = ?';
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(1, $member_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $member = $stmt->fetch();
+        return $member;
+    }
 }

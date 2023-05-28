@@ -8,14 +8,14 @@ function isChecked($id, $article)
 ?>
 
 
-<div class="main">
+<div class="main article">
 
     <h2>Sửa bài viết</h2>
-    <form action="routes.php?controller=article&action=edit&id=<?= $_GET['id'] ?>" method="POST">
+    <form action="routes.php?controller=article&action=edit" method="POST">
         <div class="row mb-3">
-            <label for="article-id" class="col-sm-2 col-form-label">Id</label>
+            <label for="id" class="col-sm-2 col-form-label">Id</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="article-id" readonly value="<?= $_GET['id'] ?>">
+                <input type="text" class="form-control" name="id" readonly value="<?= $_GET['id'] ?>">
             </div>
         </div>
         <div class="row mb-3">

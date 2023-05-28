@@ -1,52 +1,70 @@
 <?php
 include('../includes/header.php');
 ?>
-<div class="main">
-    <h2 class="text-center">Danh sách bài viết</h2>
-<a href="routes.php?controller=article&action=create" class="btn btn-primary">Thêm bài viết</a>
-<div class="table-responsive">
-    <table class="table table-primary">
-        <thead>
-            <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Summary</th>
-                <th scope="col">Content</th>
-                <th scope="col">Created</th>
-                <th scope="col">Category</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete </th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($articles as $article) {
-                ?>
-                <tr class="">
-                    <td>
-                        <?= $article['title'] ?>
-                    </td>
-                    <td>
-                        <?= $article['summary'] ?>
-                    </td>
-                    <td>
-                        <?= $article['content'] ?>
-                    </td>
-                    <td>
-                        <?= $article['created'] ?>
-                    </td>
-                    <td>
-                        <?= $article['name'] ?>
-                    </td>
-                    <td><a href="routes.php?controller=article&action=edit&id=<?= $article['id'] ?>">Edit</a></td>
-                    <td><a href="routes.php?controller=article&action=delete&id=<?= $article['id'] ?>">Delete</a></td>
-                </tr>
-                <?php
-            }
-            ?>
+<div class="main article">
+    <div class="admin header text-center text-uppercase">
+        <h1>Articles</h1>
+    </div>
+    <div class="text-center text-uppercase">
+        <a href="routes.php?controller=article&action=create" class="btn-prime">Add new article</a>
+    </div>
+    <div class="large-table">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Created</th>
+                        <th scope="col">Published</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($articles as $article) {
+                        ?>
+                        <tr class="">
+                            <td scope="row" class="large">
+                                <img src="<?php
+                                foreach ($images as $image) {
+                                    if($article['image_id'] == null){
+                                        echo '../public/img/blank.png"'. 'alt="' . $image['alt'] . '"';
+                                    }
+                                    
+                                    elseif ($article['image_id'] == $image['id']) {
+                                        ?>
+                                        ../public/img/<?= $image['file'] ?>" alt="<?= $image['alt'] ?>"
+                                        <?php
+                                            break;
+                                    }
+                                }
+                                ?> style="height: 116px; border-radius: 8px;">
+                            </td>
+                            <td class="large fw-bold">
+                                <?= $article['title'] ?>
+                            </td>
+                            <td>
+                                <?= $article['created'] ?>
+                            </td>
+                            <td>
+                                <?php
+                                $published = $article['published'] == 1 ? 'Yes' : 'No';
+                                ?>
+                                <?= $published ?>
+                            </td>
+                            <td><a href="routes.php?controller=article&action=edit&id=<?=$article['id']?>" class="btn-prime">Edit</a></td>
+                            <td><a href="routes.php?controller=article&action=delete&id=<?=$article['id']?>" class="btn-delete">Delete</a></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
 
-        </tbody>
-    </table>
-</div>
+    </div>
 </div>
 <?php
 include('../includes/footer.php');

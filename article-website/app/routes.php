@@ -17,15 +17,15 @@ require($controllerPath);
 $control = new $controller();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $art_id = isset($_POST['article-id']) ? $_POST['article-id'] : '';
-    $art_title = $_POST['title'];
-    $art_summary = $_POST['summary'];
-    $art_content = $_POST['content'];
-    $art_category = $_POST['category'];
-    $art_member = $_POST['member'];
-    $art_image = $_POST['image'];
-    $newArticle = new Article($art_id, $art_title, $art_summary, $art_content, '',$art_category, $art_member, $art_image);
-    $control->$action($art_id, $newArticle);
+    $id = isset($_POST['id']) ? $_POST['id'] : '';
+    // $art_title = $_POST['title'];
+    // $art_summary = $_POST['summary'];
+    // $art_content = $_POST['content'];
+    // $art_category = $_POST['category'];
+    // $art_member = $_POST['member'];
+    // $art_image = $_POST['image'];
+    $atts = $_POST;
+    $control->$action($id, $atts);
 } else {
     if ($id > 0) {
         $control->$action($id);

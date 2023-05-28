@@ -1,4 +1,5 @@
 <?php
+
 class ArticleService
 {
     // Bước 01: Tạo kết nối với csdl
@@ -16,7 +17,7 @@ class ArticleService
     {
 
         // Bước 02: Truy vấn DL
-        $sql = "SELECT a.id, a.title, a.summary, a.content, a.created, a.category_id, a.member_id, a.image_id, c.name, c.description, c.navigation FROM article a JOIN category c ON a.category_id=c.id  ORDER BY created DESC";
+        $sql = "SELECT a.id, a.title, a.summary, a.content, a.created, a.category_id, a.member_id, a.image_id, a.published, c.name, c.description, c.navigation FROM article a JOIN category c ON a.category_id=c.id  ORDER BY created DESC";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute();
 
@@ -35,8 +36,9 @@ class ArticleService
         $article = $stmt->fetch();
         return $article;
     }
-    public function create(Article $newArticle)
+    public function create($attributes)
     {
+        $newArticle = new Article($attributes);
         $query = 'INSERT INTO article(title, summary, content, created, category_id, member_id, image_id, published) 
         VALUES (?,?,?,NOW(),?,?,?,1)';
         $stmt = $this->connection->prepare($query);
@@ -56,8 +58,9 @@ class ArticleService
         $stmt->bindParam(6, $newImage, PDO::PARAM_INT);
         $stmt->execute();
     }
-    public function edit(Article $newArticle)
+    public function edit($attributes)
     {
+        $newArticle = new Article($attributes);
         $query = 'update article set title = ?, summary = ?, content = ?, category_id = ?, member_id = ?, image_id = ? where id = ?';
         $stmt = $this->connection->prepare($query);
 
@@ -84,5 +87,13 @@ class ArticleService
         $stmt = $this->connection->prepare($sql_delete);
         $stmt->bindParam(1, $id, PDO::PARAM_INT);
         $stmt->execute();
+    }
+    public function count()
+    {
+        $query = 'select count(id) as count from article';
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
+        $count = $stmt->fetch();
+        return $count['count'];
     }
 }

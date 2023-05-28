@@ -17,4 +17,13 @@ class ImageService{
         $members = $stmt->fetchAll();
         return $members;
     }
+    public function getById($image_id)
+    {
+        $query = 'SELECT * FROM image WHERE id = ?';
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(1, $image_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $image = $stmt->fetch();
+        return $image;
+    }
 }

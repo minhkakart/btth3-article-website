@@ -1,41 +1,32 @@
 <?php
 require '../includes/header.php';
 ?>
-<div class="table-responsive">
-    <table class="table table-primary">
-        <thead>
-            <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Summary</th>
-                <th scope="col">Content</th>
-                <th scope="col">Created</th>
-                <th scope="col">Category</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="">
-                <td>
+<div class="main article">
+    <div class="show">
+        <div class="row">
+            <div class="col-md-7">
+                <img class="show-img" src="../public/img/<?= $image['file'] ?>" alt="<?= $image['alt'] ?>" >
+            </div>
+            <div class="col-md-5">
+                <h2 class="title">
                     <?= $article['title'] ?>
-                </td>
-                <td>
-                    <?= $article['summary'] ?>
-                </td>
-                <td>
-                    <?= $article['content'] ?>
-                </td>
-                <td>
+                </h2>
+                <p class="created">
                     <?= $article['created'] ?>
-                </td>
-                <td>
-                    <?= $category_name ?>
-                </td>
-                <td><a href="#">Edit</a></td>
-                <td><a href="#">Delete</a></td>
-            </tr>
-        </tbody>
-    </table>
+                </p>
+                <p class="content">
+                    <?= $article['content'] ?>
+                </p>
+
+                <p class="credit text-uppercase">Posted in <strong>
+                        <?=$category['name']?>
+                    </strong> by <strong>
+                    <?=$member['forename']?> <?=$member['surname']?>
+                    </strong>
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php
